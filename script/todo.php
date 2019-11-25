@@ -123,7 +123,7 @@ HTML;
         $languages = array_map(function ($language) {
             $icon = $this->icon($this->items[$language]);
 
-            return "[{$language} {$icon}](#$language)";
+            return "[{$language}{$icon}](#$language)";
         }, $languages);
 
         return implode('|', $languages);
@@ -133,7 +133,7 @@ HTML;
     {
         $is_empty = is_array($values) ? $this->isEmpty($values) : (bool) $values;
 
-        return $is_empty ? '✔' : '❗';
+        return $is_empty ? '' : ' ❗';
     }
 
     protected function isEmpty(array $values): bool
