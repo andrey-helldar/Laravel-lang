@@ -23,9 +23,20 @@ jobs:
                     php-version: 7.4
                     extensions: mbstring, json
 
-            -   name: Make
+            -   name: Git setup
                 run: |
-                    php script/todo.php
+                    git config --local user.email "action@github.com"
+                    git config --local user.name "GitHub Action"
+
+            -   name: Generate todo.md
+                run: php script/todo.php
+
+            -   name: Commit file
+                run: |
                     git add .
                     git commit -a -m "Updated todo.md file"
-                    git push
+
+            -   name: Push changes
+                uses: ad-m/github-push-action@master
+                with:
+                    github_token: ${{ secrets.GITHUB_TOKEN }}
