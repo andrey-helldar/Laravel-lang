@@ -1,0 +1,28 @@
+name: make-todo
+on: [ push ]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        strategy:
+            fail-fast: true
+            php: 7.4
+
+        name: Make TODO.md
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v2
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v1
+                with:
+                    php-version: ${{ php }}
+                    extensions: mbstring, json
+
+            -   name: Make
+                run: |
+                    php script/todo.php
+                    git add .
+                    git commit -a -m "Updated todo.md file"
