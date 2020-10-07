@@ -10,7 +10,6 @@ jobs:
 
         strategy:
             fail-fast: true
-            php: 7.4
 
         name: Make TODO.md
 
@@ -21,7 +20,7 @@ jobs:
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v1
                 with:
-                    php-version: ${{ php }}
+                    php-version: 7.4
                     extensions: mbstring, json
 
             -   name: Make
