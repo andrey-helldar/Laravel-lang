@@ -1,5 +1,8 @@
 name: make-todo
-on: [ push ]
+on:
+    push:
+        branches:
+            - master
 
 jobs:
     build:
@@ -26,3 +29,4 @@ jobs:
                     php script/todo.php
                     git add .
                     git commit -a -m "Updated todo.md file"
+                    git push
